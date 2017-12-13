@@ -1,0 +1,6 @@
+{
+    "esversion": 6,
+    "quotmark": "true",
+    "node": true,
+    "jasmine": true
+}

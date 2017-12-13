@@ -1,0 +1,16 @@
+---
+connections:
+  -
+    name: test
+    authUrl: https://auth.url.test
+    username: user
+    password: p@ssw0rd
+    region: FR1
+    container: container-test
+storage:
+  default: oss
+  providers:
+    -
+      name: oss
+      type: ~/lib
+      connection: oss

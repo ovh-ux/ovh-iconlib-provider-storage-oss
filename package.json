@@ -1,0 +1,43 @@
+{
+  "name": "ovh-iconlib-provider-storage-oss",
+  "version": "0.1.0",
+  "description": "OpenStack Storage provider",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovh-ux/ovh-iconlib-provider-storage-oss"
+  },
+  "scripts": {
+    "lint": "jshint lib/*.js",
+    "pretest": "npm run lint && cp spec/resources/config.yml config.yml",
+    "test": "istanbul cover jasmine",
+    "posttest": "rm config.yml && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "keywords": [
+    "OpenStack",
+    "Storage",
+    "Provider"
+  ],
+  "author": "OVH",
+  "license": "BSD-3-Clause",
+  "homepage": "https://github.com/ovh-ux/ovh-iconlib-provider-storage-oss#readme",
+  "devDependencies": {
+    "coveralls": "3.0.0",
+    "cz-ovh-commit": "1.0.0",
+    "istanbul": "0.4.5",
+    "jasmine": "2.8.0",
+    "jshint": "2.9.5"
+  },
+  "dependencies": {
+    "ovh-iconlib-provider-storage": "0.1.0",
+    "pkgcloud": "1.5.0",
+    "rduk-configuration": "1.2.0",
+    "rduk-errors": "1.2.3",
+    "rduk-provider": "1.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-ovh-commit"
+    }
+  }
+}
