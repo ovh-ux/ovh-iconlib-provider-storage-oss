@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ovh-ux/ovh-iconlib-provider-storage-oss.svg?branch=master)](https://travis-ci.org/ovh-ux/ovh-iconlib-provider-storage-oss)
 [![Coverage Status](https://coveralls.io/repos/github/ovh-ux/ovh-iconlib-provider-storage-oss/badge.svg?branch=master)](https://coveralls.io/github/ovh-ux/ovh-iconlib-provider-storage-oss?branch=master)
+
 [![NPM](https://nodei.co/npm/ovh-iconlib-provider-storage-oss.png)](https://nodei.co/npm/ovh-iconlib-provider-storage-oss/)
 
 this module is an implementation of the [base storage provider](https://github.com/ovh-ux/ovh-iconlib-provider-storage)
