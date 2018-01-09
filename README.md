@@ -5,12 +5,14 @@
 
 [![NPM](https://nodei.co/npm/ovh-iconlib-provider-storage-oss.png)](https://nodei.co/npm/ovh-iconlib-provider-storage-oss/)
 
-this module is an implementation of the [base storage provider](https://github.com/ovh-ux/ovh-iconlib-provider-storage)
+this module is an implementation of the [base storage provider](https://github.com/ovh-ux/ovh-iconlib-provider-storage).
+
+it uses the [openstack](https://www.openstack.org/) part of [pkgcloud](https://www.npmjs.com/package/pkgcloud).
 
 ## Installation
 
-```bash
-npm install --save "https://github.com/ovh-ux/ovh-iconlib-provider-storage" "https://github.com/ovh-ux/ovh-iconlib-provider-storage-oss"
+```sh
+npm install --save ovh-iconlib-provider-storage ovh-iconlib-provider-storage-oss
 ```
 
 ## Configuration
@@ -43,8 +45,8 @@ const storage = require('ovh-iconlib-provider-storage').getInstance();
 ```
 
 ```js
-// get files
-storage.list()
+// list 10 files from path/to/list
+storage.list('path/to/list', 10, 10)
     .then(files => {
         files.forEach(file =>  {
             ...

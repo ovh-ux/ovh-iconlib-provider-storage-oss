@@ -30,7 +30,7 @@
 
 const fs = require('fs');
 const stream = require('stream');
-const errors = require('rduk-errors');
+const errors = require('@rduk/errors');
 const Provider = require('../lib');
 
 describe('storage provider', function() {
@@ -55,11 +55,49 @@ describe('storage provider', function() {
 
         describe('method list, when called,', function() {
             it('should return an array of files', function(done) {
-                spyOn(provider.client, "getFiles").and.callFake((container, cb) => { cb(null, []); });
+                spyOn(provider.client, "getFiles").and.callFake((container, cb) => { cb(null, [{name: 'test/img1.jpg'}]); });
                 provider.list()
                     .then(files => {
                         expect(files).toBeDefined();
                         expect(Array.isArray(files)).toBe(true);
+                        expect(files.length === 0).toBe(true);
+                        done();
+                    })
+                    .catch(err => {
+                        //if here, something went wrong.
+                        expect(err).toBeUndefined();
+                        done();
+                    });
+            });
+        });
+
+        describe('method list, when called with a specific path as first parameter', function() {
+            it('should return a filtered array of files', function(done) {
+                spyOn(provider.client, "getFiles").and.callFake((container, cb) => { cb(null, [{name: 'test/img1.jpg'}, {name: 'test/img2.jpg'}, {name: 'not/returned.jpg'}]); });
+                provider.list('test')
+                    .then(files => {
+                        expect(files).toBeDefined();
+                        expect(Array.isArray(files)).toBe(true);
+                        expect(files.length).toBe(2);
+                        done();
+                    })
+                    .catch(err => {
+                        //if here, something went wrong.
+                        expect(err).toBeUndefined();
+                        done();
+                    });
+            });
+        });
+
+        describe('method list, when called with skip and take parameters', function() {
+            it('should return a paginated array of files', function(done) {
+                spyOn(provider.client, "getFiles").and.callFake((container, cb) => { cb(null, [{name: 'test/img1.jpg'}, {name: 'test/img2.jpg'}, {name: 'not/returned.jpg'}]); });
+                provider.list('test', 1, 1)
+                    .then(files => {
+                        expect(files).toBeDefined();
+                        expect(Array.isArray(files)).toBe(true);
+                        expect(files.length).toBe(1);
+                        expect(files[0].name).toBe('test/img2.jpg');
                         done();
                     })
                     .catch(err => {
