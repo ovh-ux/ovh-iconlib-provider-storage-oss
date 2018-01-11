@@ -161,6 +161,7 @@ describe('storage provider', function() {
                         done();
                     }
                     dummyStream.on('finish', function() {
+                        console.log('finish');
                         this.emit('success', {});
                     });
                     spyOn(provider.client, "upload").and.returnValue(dummyStream);
