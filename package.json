@@ -1,6 +1,6 @@
 {
   "name": "ovh-iconlib-provider-storage-oss",
-  "version": "0.2.1",
+  "version": "0.2.0",
   "description": "OpenStack Storage provider",
   "main": "lib/index.js",
   "repository": {
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@rduk/configuration": "^2.1.0",
-    "@rduk/logger": "^0.1.5",
+    "@rduk/logger": "^0.1.4",
     "@rduk/provider": "^2.0.3",
     "concat-stream": "1.6.0",
     "ovh-iconlib-provider-storage": "^0.2.0",
