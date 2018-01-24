@@ -1,6 +1,6 @@
 {
   "name": "ovh-iconlib-provider-storage-oss",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "OpenStack Storage provider",
   "main": "lib/index.js",
   "repository": {
@@ -10,8 +10,10 @@
   "scripts": {
     "lint": "jshint lib/*.js",
     "pretest": "npm run lint && cp spec/resources/config.yml config.yml",
-    "test": "istanbul cover jasmine",
-    "posttest": "rm config.yml && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "istanbul cover jasmine --report cobertura",
+    "posttest": "rm config.yml",
+    "report": "istanbul report",
+    "coveralls": "npm run report && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
     "OpenStack",
@@ -30,10 +32,11 @@
     "jshint": "2.9.5"
   },
   "dependencies": {
-    "@rduk/configuration": "^2.1.0",
-    "@rduk/logger": "^0.1.4",
-    "@rduk/provider": "^2.0.3",
-    "ovh-iconlib-provider-storage": "^0.2.0",
+    "@rduk/configuration": "^2.1.1",
+    "@rduk/logger": "^0.1.5",
+    "@rduk/provider": "^2.0.4",
+    "concat-stream": "1.6.0",
+    "ovh-iconlib-provider-storage": "^0.3.0",
     "pkgcloud": "1.5.0"
   },
   "config": {

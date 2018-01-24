@@ -11,6 +11,8 @@ it uses the [openstack](https://www.openstack.org/) part of [pkgcloud](https://w
 
 ## Installation
 
+[`ovh-iconlib-provider-storage`](https://github.com/ovh-ux/ovh-iconlib-provider-storage) is a peer dependency.
+
 ```sh
 npm install --save ovh-iconlib-provider-storage ovh-iconlib-provider-storage-oss
 ```
@@ -23,11 +25,11 @@ npm install --save ovh-iconlib-provider-storage ovh-iconlib-provider-storage-oss
 connections:
     -
         name: test
-        authUrl: ${OSS_AUTH_URL}
-        username: ${OSS_USERNAME}
-        password: ${OSS_PASSWORD}
-        region: ${OSS_REGION}
-        container: ${OSS_CONTAINER}
+        authUrl: ${OSS_AUTH_URL} # process.env.OSS_AUTH_URL
+        username: ${OSS_USERNAME} # process.env.OSS_USERNAME
+        password: ${OSS_PASSWORD} # process.env.OSS_PASSWORD
+        region: ${OSS_REGION} # process.env.OSS_REGION
+        container: ${OSS_CONTAINER} # process.env.OSS_CONTAINER
 storage:
    default: oss
    providers:
@@ -69,6 +71,11 @@ storage.remove('example.txt')
     .then(removed => {
         ...
     });
+```
+
+```js
+// download file (get a readable stream)
+let stream = storage.download('example.txt');
 ```
 
 ## License

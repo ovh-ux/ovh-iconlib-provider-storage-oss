@@ -194,32 +194,22 @@ describe('storage provider', function() {
             describe('with valid parameter filename', () => {
                 it('should success', done => {
                     spyOn(provider.client, "download").and.callFake((options, cb) => { cb(null, {}); });
-                    provider.download('dummy.txt')
-                        .then(result => {
-                            expect(result).toBeDefined();
-                            done();
-                        })
-                        .catch(err => {
-                            //if here, something went wrong.
-                            expect(err).toBeUndefined();
-                            done();
-                        });
+                    provider.download('dummy.txt', function(err, result) {
+                        expect(err).toBe(null);
+                        expect(result).toBeDefined();
+                        done();
+                    });
                 });
             });
 
             describe('When an unexpected error occured during the download', () => {
-                it('should reject the promise', done => {
+                it('should send an error in callback', done => {
                     spyOn(provider.client, "download").and.callFake((options, cb) => { cb(new Error('unexpected error')); });
-                    provider.download('dummy.txt')
-                        .then(result => {
-                            //if here, something went wrong.
-                            expect(result).toBeUndefined();
-                            done();
-                        })
-                        .catch(err => {
-                            expect(err).toBeDefined();
-                            done();
-                        });
+                    provider.download('dummy.txt', function(err) {
+                        expect(err).toBeDefined();
+                        expect(err instanceof Error).toBe(true);
+                        done();
+                    });
                 });
             });
 
