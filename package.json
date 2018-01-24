@@ -10,8 +10,10 @@
   "scripts": {
     "lint": "jshint lib/*.js",
     "pretest": "npm run lint && cp spec/resources/config.yml config.yml",
-    "test": "istanbul cover jasmine",
-    "posttest": "rm config.yml && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "istanbul cover jasmine --report cobertura",
+    "posttest": "rm config.yml",
+    "report": "istanbul report",
+    "coveralls": "npm run report && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
     "OpenStack",
